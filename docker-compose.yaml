@@ -1,0 +1,28 @@
+version: "3.3"
+services:
+  postgres:
+    image: "postgres:11.8"
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=mrrobot
+      - POSTGRES_DB=ecomercedb
+      - POSTGRES_PASSWORD=pa33w0rd
+      - PGDATA=/var/lib/postgresql/data/pgdata
+  api:
+    depends_on:
+      - postgres
+    build:
+      dockerfile: Dockerfile
+      context: .
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app/node_app
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/yarn.json
+      - notused:/app/node_modules
+
+volumes:
+  notused:
