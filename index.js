@@ -1,8 +1,7 @@
-const Koa = require('koa')
-const app = new Koa();
+import server from './server';
 
-app.use(async ctx => {
-    ctx.body = 'Hello Koa!'
-})
+const PORT = process.env.PORT || 5000;
 
-app.listen(3000)
+server.listen(PORT, () => {
+  console.log(`🖥 server running at http://localhost:${PORT}`);
+});
