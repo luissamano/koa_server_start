@@ -1,0 +1,26 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "extends": ["prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "no-console": 2,
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "printWidth": 80,
+        "editor.formatOnSave": true,
+        "useTabs": false,
+        "tabWidth": 2,
+        "trailingComma": "es5",
+        "semi": true
+      }
+    ]
+  },
+  "env": {
+    "node": true,
+    "es6": true
+  }
+}
