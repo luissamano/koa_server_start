@@ -1,17 +1,17 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize(
+const sequelizeConnect = new Sequelize(
   'postgres://mrrobot:pa33w0rd@localhost:5432/ecomercedb',
   {
-    logging: logger.debug.bind(logger), // Alternative way to use custom logger, displays all messages
+    logging: console.log,
   }
 );
 
 try {
-  await sequelize.authenticate();
+  sequelizeConnect.authenticate();
   console.log('Connection has been established successfully.');
 } catch (error) {
   console.error('Unable to connect to the database:', error);
 }
 
-export default sequelize;
+export default sequelizeConnect;
