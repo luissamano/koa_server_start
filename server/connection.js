@@ -9,9 +9,9 @@ const sequelizeConnect = new Sequelize(
 
 try {
   sequelizeConnect.authenticate();
-  console.log('Connection has been established successfully.');
+  console.log('Conexion establecidad de manera correcta.');
 } catch (error) {
-  console.error('Unable to connect to the database:', error);
+  console.error('No se pudo realizar la conexion:', error);
 }
 
 export default sequelizeConnect;

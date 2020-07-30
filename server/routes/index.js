@@ -2,7 +2,8 @@ const koa = require('koa');
 const Router = require('koa-router');
 const koaBody = require('koa-body');
 
-import { getAllUsers } from '../controllers/users';
+import { getAllUsers, postUser } from '../controllers/users';
+import User from '../models/user';
 
 const router = new Router({
   prefix: '/api',
@@ -11,13 +12,15 @@ const router = new Router({
 router
   .get('/users', (ctx, next) => {
     ctx.status = 200;
-    ctx.body = JSON.stringify(getAllUsers);
+    ctx.body = getAllUsers();
   })
   .get('/users/:id', (ctx, next) => {
     //
   })
   .post('/users', (ctx, next) => {
-    //
+    console.log(ctx);
+    postUser();
+    next();
   })
   .put('/users/:id', (ctx, next) => {
     //

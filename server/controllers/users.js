@@ -1,36 +1,40 @@
 import User from '../models/user.js';
+import sequelizeConnect from '../connection.js';
 
 const getAllUsers = () => {
-  //
+  return JSON.stringify({
+    id: 2,
+    name: 'Luis martin',
+    description: 'Description',
+  });
 };
 
 const getUserById = () => {
   //
 };
 
-const postUser = async (req, res) => {
+const postUser = async req => {
   //
-  const { newUsers } = req;
+  console.log(` --------- postUser ---------------`);
+  console.log(req);
 
-  const t = await sequelize.transaction();
+  const t = await sequelizeConnect.transaction();
 
   try {
-    newUsers.forEach(item => {
-      const user = User.create(
-        {
-          firstName: item.firstName,
-          lastName: item.lastName,
-          email: item.email,
-        },
-        { transaction: t }
-      );
-    });
+    const user = User.create(
+      {
+        firstName: item.firstName,
+        lastName: item.lastName,
+        email: item.email,
+      },
+      { transaction: t }
+    );
 
     await t.commit();
 
     return JSON.stringify({
       statusCode: 201,
-      message: `Se crearon ${newUsers.count} usuarios nuevos`,
+      message: user,
     });
   } catch (error) {
     await t.rollback();
